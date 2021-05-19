@@ -1,10 +1,20 @@
 import { useAtom } from 'jotai'
-import { handleSearchAtom } from '../../../../atoms/region'
+import { useCallback } from 'react'
+import { searchAtom } from '../../../../atoms/region'
 import { getGeolocation } from '../../../../utils'
 import { IconSearch } from '../../../Icons'
 
 function Form() {
-  const [, handleSearch] = useAtom(handleSearchAtom)
+  const [, handleSearch] = useAtom(searchAtom)
+  const setRegions = useCallback(
+    async ({ key, value }) => {
+      const response = await fetch(`/api/regions?${key}=${value}`)
+      const data = await response.json()
+
+      handleSearch(data)
+    },
+    [handleSearch]
+  )
 
   return (
     <>
@@ -14,7 +24,7 @@ function Form() {
 
           const form = e.target
 
-          await handleSearch({
+          await setRegions({
             key: 'keyword',
             value: form.q.value,
           })
@@ -37,7 +47,7 @@ function Form() {
         onClick={async () => {
           const { lat, lng } = await getGeolocation()
 
-          await handleSearch({
+          await setRegions({
             key: 'latLng',
             value: [lat, lng].join(','),
           })

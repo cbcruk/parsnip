@@ -38,11 +38,17 @@ export const handleHistoryAtom = atom(
   }
 )
 
+export async function getRegions(key, value) {
+  const response = await fetch(`/api/regions?${key}=${value}`)
+  const data = await response.json()
+
+  return data
+}
+
 export const handleSearchAtom = atom(
   (get) => get(searchAtom),
   async (_get, set, { key, value }) => {
-    const response = await fetch(`/api/regions?${key}=${value}`)
-    const data = await response.json()
+    const data = await getRegions(key, value)
 
     set(searchAtom, data)
   }

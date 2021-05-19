@@ -952,6 +952,11 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
+eslint-plugin-react-hooks@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
+  integrity sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==
+
 eslint-plugin-react@^7.23.2:
   version "7.23.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.23.2.tgz#2d2291b0f95c03728b55869f01102290e792d494"
@@ -1604,10 +1609,10 @@ jest-worker@27.0.0-next.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-jotai@^0.16.3:
-  version "0.16.3"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-0.16.3.tgz#8ecd82cdf6a5b473fc37c919a48bdd7f5ecc87bf"
-  integrity sha512-qE8ONzak80Bfa8TssXVBv25hfQDL7G6HEH+nbc5N0w3CaJcqjKRRC5E0IUkWowMN3/NpPRfQXS4H+39AVrOfMg==
+jotai@^0.16.5:
+  version "0.16.5"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-0.16.5.tgz#493bab65b69c045c508d8a3a4996fcc4d75e8228"
+  integrity sha512-exiddLOPp22P0c7z+X5jQEraoEdFm80BaNeuT2WTMAFNRZY2l1XmefR/PXj9JEaAMrHRQk7BKbJ51C5AddoSWA==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
