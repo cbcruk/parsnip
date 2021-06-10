@@ -9,7 +9,7 @@ import Label from './components/Label'
 import useFeeds from './useFeeds'
 
 function Feeds() {
-  const { data, size, setSize } = useFeeds()
+  const { data, isValidating, size, setSize } = useFeeds()
 
   if (!data) {
     return null
@@ -55,10 +55,11 @@ function Feeds() {
       })}
       <div className="p-4">
         <button
+          disabled={isValidating}
           className="w-full h-9 p-1 rounded bg-yellow-500 text-white text-sm font-bold"
           onClick={() => setSize(size + 1)}
         >
-          더보기
+          {isValidating ? '로딩중...' : '더보기'}
         </button>
       </div>
     </>

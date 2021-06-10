@@ -10,7 +10,10 @@ export const currentAtom = atom(getLocalStorageItem(CURRENT_REGION_KEY, null))
 
 export const historyAtom = atom(getLocalStorageItem(HISTORY_REGION_KEY, []))
 
-export const searchAtom = atom([])
+export const searchAtom = atom({
+  status: 'idle',
+  regions: [],
+})
 
 export const handleCurrentAtom = atom(
   (get) => get(currentAtom),
@@ -47,9 +50,21 @@ export async function getRegions(key, value) {
 
 export const handleSearchAtom = atom(
   (get) => get(searchAtom),
-  async (_get, set, { key, value }) => {
-    const data = await getRegions(key, value)
+  (get, set, { key, value }) => {
+    async function fetchRegions() {
+      set(searchAtom, {
+        ...get(searchAtom),
+        status: 'loading',
+      })
 
-    set(searchAtom, data)
+      const data = await getRegions(key, value)
+
+      set(searchAtom, {
+        regions: data,
+        status: 'succeeded',
+      })
+    }
+
+    fetchRegions()
   }
 )

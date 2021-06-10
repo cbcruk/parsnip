@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import {
   handleCurrentAtom,
@@ -32,20 +33,26 @@ function Group({ label, children }) {
 }
 
 function Result() {
-  const [searchRegions] = useAtom(searchAtom)
+  const [search] = useAtom(searchAtom)
   const [historyRegions, handleHistory] = useAtom(handleHistoryAtom)
   const [, setCurrent] = useAtom(handleCurrentAtom)
 
   return (
     <div className="mt-8">
       <Group label="검색 결과">
-        {searchRegions.map((region) => (
-          <Item
-            key={region.id}
-            region={region}
-            onClick={() => setCurrent(region)}
-          />
-        ))}
+        <div
+          className={clsx('transition-opacity duration-500', {
+            'opacity-50': search.status === 'loading',
+          })}
+        >
+          {search.regions.map((region) => (
+            <Item
+              key={region.id}
+              region={region}
+              onClick={() => setCurrent(region)}
+            />
+          ))}
+        </div>
       </Group>
 
       <Group label="최근 주소">
