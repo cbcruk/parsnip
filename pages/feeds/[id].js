@@ -6,7 +6,9 @@ import Feed from '../../components/Feed/'
 function Detail() {
   const router = useRouter()
   const { id } = router.query
-  const { data } = useSWR(id ? `/api/feeds/${id}` : null)
+  const { data } = useSWR(id ? `/api/feeds/${id}` : null, (url) =>
+    fetch(url).then((r) => r.json())
+  )
 
   if (!data) {
     return null

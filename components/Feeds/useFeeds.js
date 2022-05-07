@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { useSWRInfinite } from 'swr'
+import useSWRInfinite from 'swr/infinite'
 import { currentAtom } from '../../atoms/region'
 
 function getMaxPublishedAt(previousPageData) {
@@ -14,22 +14,30 @@ function getMaxPublishedAt(previousPageData) {
   return maxPublishedAt
 }
 
-function getKey(index, previousPageData, regionId) {
-  const maxPublishedAt = getMaxPublishedAt(previousPageData)
-  const params = new URLSearchParams()
-
-  params.set('regionId', regionId)
-  params.set('page', index + 1)
-  params.set('maxPublishedAt', maxPublishedAt)
-
-  return `/api/feeds?${params.toString()}`
-}
-
 function useFeeds() {
   const [current] = useAtom(currentAtom)
   const regionId = current?.id
-  const response = useSWRInfinite((...args) =>
-    regionId ? getKey(...args, regionId) : null
+  const response = useSWRInfinite(
+    (index, previousPageData) => {
+      if (previousPageData && !previousPageData?.meta) return null
+
+      if (!regionId) {
+        return null
+      }
+
+      const maxPublishedAt = getMaxPublishedAt(previousPageData)
+      const params = new URLSearchParams()
+
+      params.set('regionId', regionId)
+      params.set('page', index + 1)
+      params.set('maxPublishedAt', maxPublishedAt)
+
+      return `/api/feeds?${params.toString()}`
+    },
+    (url) => fetch(url).then((res) => res.json()),
+    {
+      revalidateFirstPage: false,
+    }
   )
 
   return response

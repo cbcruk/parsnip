@@ -15,7 +15,10 @@ function Feeds() {
     return null
   }
 
-  const feeds = uniqBy(data.map(({ feeds }) => feeds).flat(), 'data.meta.id')
+  const feeds = uniqBy(
+    (data || []).map(({ feeds }) => feeds).flat(),
+    'data.meta.id'
+  )
 
   return (
     <>
