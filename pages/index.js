@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Feeds from '../../components/Feeds'
+import Feeds from '../components/Feeds'
 
-function List() {
+function Home() {
   return (
     <>
       <Head>
@@ -16,4 +16,4 @@ function List() {
   )
 }
 
-export default List
+export default Home
