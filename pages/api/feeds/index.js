@@ -1,32 +1,17 @@
-import { HEADERS } from '../../../constants'
+import { getFeeds } from '../../../lib/daangn'
 
-function getParams(query) {
-  const params = new URLSearchParams()
-  const { page, regionId, maxPublishedAt = '' } = query
+function queryToString(query) {
+  const searchParams = new URLSearchParams()
 
-  params.set('range', 'my')
-  params.set('feedSize', 15)
-  params.set('page', page || 1)
+  Object.entries(query).forEach(([key, value]) => {
+    searchParams.append(key, value)
+  })
 
-  if (regionId) {
-    params.set('regionId', regionId)
-  }
-
-  if (maxPublishedAt) {
-    params.set('maxPublishedAt', maxPublishedAt)
-  }
-
-  return params.toString()
+  return searchParams.toString()
 }
 
 async function feeds(req, res) {
-  const response = await fetch(
-    `${process.env.FEEDS_API_URL}/feeds/home?${getParams(req.query)}`,
-    {
-      headers: HEADERS,
-    }
-  )
-  const data = await response.json()
+  const data = await getFeeds({ query: queryToString(req.query) })
 
   res.json(data)
 }
