@@ -1,9 +1,9 @@
 import { useAtom } from 'jotai'
-import { modalAtom } from '../../../../atoms/modal'
-import { IconLocationMarker } from '../../../Icons'
-import Modal from '../../../Modal'
-import Form from '../Form'
-import Result from '../Result'
+import { modalAtom } from '../../../../../atoms/modal'
+import { IconLocationMarker } from '../../../../Icons'
+import Modal from '../../../../Modal'
+import Form from '../../Form'
+import Result from '../../Result'
 import useRegion from './useRegion'
 
 function Select() {

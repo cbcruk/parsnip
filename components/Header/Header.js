@@ -1,10 +1,10 @@
-import Select from './components/Select'
+import SelectRegion from './components/Select/Region'
 
 function Header() {
   return (
     <header className="flex items-center justify-between p-4 shadow">
       <div className="flex items-center gap-2">
-        <Select />
+        <SelectRegion />
       </div>
     </header>
   )

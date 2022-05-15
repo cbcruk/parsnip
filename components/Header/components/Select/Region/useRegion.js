@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
-import { handleCurrentAtom } from '../../../../atoms/region'
+import { handleCurrentAtom } from '../../../../../atoms/region'
 
 function useRegion() {
   const router = useRouter()
