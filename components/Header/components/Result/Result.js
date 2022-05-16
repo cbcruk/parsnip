@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
+import useSWR from 'swr'
 import {
   handleCurrentAtom,
   handleHistoryAtom,
-  searchAtom,
+  searchRegionAtom,
 } from '../../../../atoms/region'
 import { IconX } from '../../../Icons'
 
@@ -33,19 +34,24 @@ function Group({ label, children }) {
 }
 
 function Result() {
-  const [search] = useAtom(searchAtom)
+  const [search] = useAtom(searchRegionAtom)
   const [historyRegions, handleHistory] = useAtom(handleHistoryAtom)
   const [, setCurrent] = useAtom(handleCurrentAtom)
+  const { data: regions, isValidating } = useSWR(
+    search || null,
+    ({ key, value }) =>
+      fetch(`/api/regions?${key}=${value}`).then((r) => r.json())
+  )
 
   return (
     <div className="mt-8">
       <Group label="검색 결과">
         <div
           className={clsx('transition-opacity duration-500', {
-            'opacity-50': search.status === 'loading',
+            'opacity-50': isValidating,
           })}
         >
-          {search.regions.map((region) => (
+          {(regions || []).map((region) => (
             <Item
               key={region.id}
               region={region}

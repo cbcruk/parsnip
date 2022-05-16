@@ -21,7 +21,10 @@ function Select() {
         {regionName}
       </button>
 
-      <Modal isOpen={isOpen} onRequestClose={() => handleModal(false)}>
+      <Modal
+        isOpen={!hasRegion || isOpen}
+        onRequestClose={() => handleModal(false)}
+      >
         <Form />
         <Result />
       </Modal>

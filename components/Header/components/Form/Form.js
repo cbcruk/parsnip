@@ -1,10 +1,38 @@
 import { useAtom } from 'jotai'
-import { handleSearchAtom } from '../../../../atoms/region'
+import useSWR from 'swr'
+import { searchRegionAtom } from '../../../../atoms/region'
 import { getGeolocation } from '../../../../utils'
 import { IconSearch } from '../../../Icons'
 
+function GeolocationButton() {
+  const [, setSearchRegion] = useAtom(searchRegionAtom)
+  const { mutate, isValidating } = useSWR(
+    '/geolocation',
+    () => getGeolocation(),
+    { revalidateOnMount: false }
+  )
+
+  return (
+    <button
+      type="button"
+      disabled={isValidating}
+      className="w-full h-9 p-1 rounded mt-4 bg-yellow-500 text-white text-sm font-bold disabled:opacity-50"
+      onClick={async () => {
+        const { lat, lng } = await mutate()
+
+        setSearchRegion({
+          key: 'latLng',
+          value: [lat, lng].join(','),
+        })
+      }}
+    >
+      현재 위치로 찾기
+    </button>
+  )
+}
+
 function Form() {
-  const [search, handleSearch] = useAtom(handleSearchAtom)
+  const [, setSearchRegion] = useAtom(searchRegionAtom)
 
   return (
     <>
@@ -14,7 +42,7 @@ function Form() {
 
           const form = e.target
 
-          handleSearch({
+          setSearchRegion({
             key: 'keyword',
             value: form.q.value,
           })
@@ -31,21 +59,7 @@ function Form() {
         </label>
       </form>
 
-      <button
-        type="button"
-        disabled={search.status === 'loading'}
-        className="w-full h-9 p-1 rounded mt-4 bg-yellow-500 text-white text-sm font-bold"
-        onClick={async () => {
-          const { lat, lng } = await getGeolocation()
-
-          handleSearch({
-            key: 'latLng',
-            value: [lat, lng].join(','),
-          })
-        }}
-      >
-        현재 위치로 찾기
-      </button>
+      <GeolocationButton />
     </>
   )
 }
