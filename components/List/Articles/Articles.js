@@ -41,15 +41,17 @@ function Articles() {
                           </span>
                         </div>
                         <div className="flex items-center gap-1 text-sm">
-                          {data.status === 'ongoing' && (
+                          {data.status !== 'ongoing' && (
                             <span
                               className={clsx(
                                 `px-1 rounded text-xs text-white`,
                                 {
-                                  'bg-green-600': [
-                                    'reserved',
-                                    'closed',
-                                  ].includes(data.status),
+                                  'bg-green-600': ['reserved'].includes(
+                                    data.status
+                                  ),
+                                  'bg-zinc-600': ['closed'].includes(
+                                    data.status
+                                  ),
                                 }
                               )}
                             >
