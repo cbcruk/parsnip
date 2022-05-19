@@ -1,13 +1,15 @@
 function getPriceText(value) {
-  if (value === 0) {
+  const intValue = parseFloat(value)
+
+  if (intValue === 0) {
     return '무료나눔'
   }
 
-  if (!value) {
+  if (!intValue) {
     return null
   }
 
-  return value.toLocaleString() + '원'
+  return intValue.toLocaleString() + '원'
 }
 
 function Price({ value }) {

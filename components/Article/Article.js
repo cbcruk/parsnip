@@ -1,7 +1,8 @@
 import { getTimeFromNow } from '../../utils'
-import Count from '../Feeds/components/Count'
+import Count from '../List/shared/Count/Count'
+import Price from '../List/shared/Price'
 
-function Feed({ article }) {
+function Article({ article }) {
   const { user } = article
 
   return (
@@ -53,8 +54,10 @@ function Feed({ article }) {
         <div className="text-xs text-gray-500">
           <Count
             items={[
+              { type: 'comment', value: article.comments_count },
               { type: 'chat', value: article.chat_rooms_count },
               { type: 'watch', value: article.watches_count },
+              { type: 'like', value: article.likes_count },
               { type: 'read', value: article.reads_count },
             ]}
           />
@@ -63,9 +66,7 @@ function Feed({ article }) {
 
       <div className="flex items-center justify-between py-4 border-t">
         <div className="relative">
-          <div className="font-bold">
-            {parseFloat(article.price).toLocaleString()}원
-          </div>
+          <Price value={article.price} />
           <div className="text-xs text-gray-400">
             {article.offerable ? '가격제안가능' : '가격제안불가'}
           </div>
@@ -78,4 +79,4 @@ function Feed({ article }) {
   )
 }
 
-export default Feed
+export default Article

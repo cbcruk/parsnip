@@ -1,16 +1,13 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 import { getTimeFromNow } from '../../utils'
-import Count from './components/Count'
-import Price from './components/Price'
-import Photo from './components/Photo'
-import Label from './components/Label'
-import useFeeds from './useFeeds'
+import Count from '../shared/Count'
+import Price from '../shared/Price'
+import Photo from '../shared/Photo'
+import Label from '../shared/Label'
 
-function Feeds() {
-  const { data, isValidating, size, setSize } = useFeeds()
-
-  if (!data) {
+function Feeds({ dataKey, data, isValidating, size, setSize }) {
+  if (!data || !dataKey) {
     return null
   }
 
@@ -19,8 +16,8 @@ function Feeds() {
       {data.map((response, index) => {
         return (
           <div key={index}>
-            {response.feeds.map(({ data, type }) => {
-              if (type !== 'FleaMarketOverview') {
+            {response[dataKey].map(({ data, type }) => {
+              if (!['FleaMarketArticle', 'FleaMarketOverview'].includes(type)) {
                 return null
               }
 

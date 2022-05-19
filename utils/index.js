@@ -38,21 +38,14 @@ export function getTimeFromNow(time) {
   return dayjs(time).fromNow()
 }
 
-export function getParams(query) {
+export function getQueryString(query) {
   const params = new URLSearchParams()
-  const { page, regionId, maxPublishedAt = '' } = query
 
-  params.set('range', 'my')
-  params.set('feedSize', 15)
-  params.set('page', page || 1)
-
-  if (regionId) {
-    params.set('regionId', regionId)
-  }
-
-  if (maxPublishedAt) {
-    params.set('maxPublishedAt', maxPublishedAt)
-  }
+  Object.entries(query).forEach(([key, value]) => {
+    if (value) {
+      params.append(key, value)
+    }
+  })
 
   return params.toString()
 }

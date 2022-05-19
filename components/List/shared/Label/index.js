@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-const STATUS = {
+export const STATUS = {
   reserved: ['예약중', 'bg-green-600'],
   closed: ['거래완료', 'bg-gray-600'],
 }

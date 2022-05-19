@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Feeds from '../components/Feeds'
+import Articles from '../components/List/Articles'
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       </Head>
 
       <main>
-        <Feeds />
+        <Articles />
       </main>
     </>
   )
