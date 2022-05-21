@@ -4,7 +4,14 @@ function Photo({ src }) {
   return (
     <div className="flex items-center justify-center w-16">
       {src ? (
-        <img src={src} alt="" width="64" height="64" className="rounded-md" />
+        <img
+          src={src}
+          alt=""
+          width="64"
+          height="64"
+          className="rounded-md"
+          loading="lazy"
+        />
       ) : (
         <IconPhoto className="h-6 w-6" />
       )}

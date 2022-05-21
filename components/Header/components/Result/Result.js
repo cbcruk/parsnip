@@ -1,11 +1,14 @@
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
+import { useRouter } from 'next/router'
+import { useCallback } from 'react'
 import useSWR from 'swr'
 import {
   handleCurrentAtom,
   handleHistoryAtom,
   searchRegionAtom,
 } from '../../../../atoms/region'
+import { getQueryString } from '../../../../utils'
 import { IconX } from '../../../Icons'
 
 function Item({ region, children, ...props }) {
@@ -34,13 +37,28 @@ function Group({ label, children }) {
 }
 
 function Result() {
+  const router = useRouter()
   const [search] = useAtom(searchRegionAtom)
-  const [historyRegions, handleHistory] = useAtom(handleHistoryAtom)
-  const [, setCurrent] = useAtom(handleCurrentAtom)
   const { data: regions, isValidating } = useSWR(
     search || null,
     ({ key, value }) =>
       fetch(`/api/regions?${key}=${value}`).then((r) => r.json())
+  )
+  const [historyRegions, handleHistory] = useAtom(handleHistoryAtom)
+  const [, setCurrent] = useAtom(handleCurrentAtom)
+  const handleCurrent = useCallback(
+    (region) => {
+      setCurrent(region)
+
+      router.push({
+        pathname: '/',
+        search: getQueryString({
+          ...router.query,
+          regionId: region.id,
+        }),
+      })
+    },
+    [router, setCurrent]
   )
 
   return (
@@ -55,7 +73,7 @@ function Result() {
             <Item
               key={region.id}
               region={region}
-              onClick={() => setCurrent(region)}
+              onClick={() => handleCurrent(region)}
             />
           ))}
         </div>
@@ -66,7 +84,7 @@ function Result() {
           <Item
             key={region.id}
             region={region}
-            onClick={() => setCurrent(region)}
+            onClick={() => handleCurrent(region)}
           >
             <button
               onClick={(e) => {

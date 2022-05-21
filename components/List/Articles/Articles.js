@@ -17,7 +17,7 @@ function Articles() {
     <>
       {data.map((response, index) => {
         return (
-          <div key={index}>
+          <div key={index} id={`articles-${index}`}>
             {response.articles.map((data) => {
               if (!['FleaMarketArticle'].includes(data.type)) {
                 return null
