@@ -1,6 +1,5 @@
 import { Provider } from 'jotai'
 import { SWRConfig } from 'swr'
-import Header from '../components/Header/Header'
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
 
@@ -12,7 +11,6 @@ function App({ Component, pageProps }) {
           revalidateOnFocus: false,
         }}
       >
-        <Header />
         <Component {...pageProps} />
       </SWRConfig>
     </Provider>

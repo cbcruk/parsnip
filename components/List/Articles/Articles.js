@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import Header from '../../Header'
 import Count from '../shared/Count'
 import Price from '../shared/Price'
 import Photo from '../shared/Photo'
@@ -7,7 +8,7 @@ import useArticles from './useArticles'
 import { getTimeFromNow } from '../../../utils'
 
 function Articles() {
-  const { data, isValidating, size, setSize } = useArticles()
+  const { data, isValidating, size, setSize, mutate } = useArticles()
 
   if (!data) {
     return null
@@ -15,6 +16,13 @@ function Articles() {
 
   return (
     <>
+      <Header
+        handleRefresh={async () => {
+          await setSize(1)
+          await mutate()
+          window.scroll(0, 0)
+        }}
+      />
       {data.map((response, index) => {
         return (
           <div key={index} id={`articles-${index}`}>
@@ -80,7 +88,7 @@ function Articles() {
           </div>
         )
       })}
-      <div className="p-4">
+      <div className="p-4 bg-white">
         <button
           disabled={isValidating}
           className="w-full h-9 p-1 rounded bg-yellow-500 text-white text-sm font-bold"

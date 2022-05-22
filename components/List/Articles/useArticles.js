@@ -35,16 +35,19 @@ function useArticles() {
       if (previousPageData && !previousPageData?.meta) return null
 
       if (pageIndex === 0) {
-        return `/api/articles?${urlSearch()}`
+        return ['/api/articles', urlSearch()]
       }
 
-      return `/api/articles?${urlSearch({
-        max_published_at_f: previousPageData.meta.max_published_at_f,
-      })}`
+      return [
+        '/api/articles',
+        urlSearch({
+          max_published_at_f: previousPageData.meta.max_published_at_f,
+        }),
+      ]
     },
-    (url) => fetch(url).then((res) => res.json()),
+    (url, search) => fetch(`${url}?${search}`).then((res) => res.json()),
     {
-      revalidateFirstPage: true,
+      revalidateFirstPage: false,
     }
   )
 
