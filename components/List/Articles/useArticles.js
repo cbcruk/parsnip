@@ -30,7 +30,7 @@ function useArticles() {
   })
   const response = useSWRInfinite(
     (pageIndex, previousPageData) => {
-      if (!regionId || !categoryId) return null
+      if (!regionId) return null
 
       if (previousPageData && !previousPageData?.meta) return null
 

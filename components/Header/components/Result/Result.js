@@ -14,7 +14,7 @@ import { IconX } from '../../../Icons'
 function Item({ region, children, ...props }) {
   return (
     <div
-      className="flex justify-between items-center py-2 border-b cursor-pointer"
+      className="flex justify-between items-center py-2 border-b border-stone-700 cursor-pointer"
       {...props}
     >
       {[region.name1, region.name2, region.name3].join(' ')}
@@ -94,6 +94,7 @@ function Result() {
                   prev.filter((item) => item.id !== region.id)
                 )
               }}
+              className="text-stone-400"
             >
               <IconX />
             </button>

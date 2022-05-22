@@ -16,7 +16,7 @@ function GeolocationButton() {
     <button
       type="button"
       disabled={isValidating}
-      className="w-full h-9 p-1 rounded mt-4 bg-yellow-500 text-white text-sm font-bold disabled:opacity-50"
+      className="w-full h-9 p-1 rounded mt-4 bg-indigo-500 text-indigo-200 text-sm font-bold disabled:opacity-50"
       onClick={async () => {
         const { lat, lng } = await mutate()
 
@@ -48,13 +48,13 @@ function Form() {
           })
         }}
       >
-        <label className="flex items-center gap-2 py-2 border-b">
+        <label className="flex items-center gap-2 py-2 border-b border-stone-500">
           <IconSearch />
           <input
             type="search"
             name="q"
             placeholder="우리 동네 이름(동, 읍, 면)으로 검색"
-            className="w-full px-2"
+            className="w-full px-2 bg-stone-800 text-stone-400"
           />
         </label>
       </form>
