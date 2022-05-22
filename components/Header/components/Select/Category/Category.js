@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
-import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
 import { atomWithToggle } from '../../../../../atoms/utils'
 import { IconLocationMarker } from '../../../../Icons'
 import Modal from '../../../../Modal'
@@ -11,7 +11,7 @@ export const modalAtom = atomWithToggle(false)
 
 function SelectCategory() {
   const [isOpen, handleModal] = useAtom(modalAtom)
-  const { data } = useSWR('/api/categories', (url) =>
+  const { data } = useSWRImmutable('/api/categories', (url) =>
     fetch(url).then((r) => r.json())
   )
   const router = useRouter()
