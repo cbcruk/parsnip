@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { modalAtom } from '../Select/Category'
+import { modalAtom } from '../Select/Category/Category'
 
 function Categories() {
   const [, handleModal] = useAtom(modalAtom)
