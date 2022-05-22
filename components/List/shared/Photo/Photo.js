@@ -9,7 +9,7 @@ function Photo({ src }) {
           alt=""
           width="80"
           height="80"
-          className="rounded-md"
+          className="rounded-lg"
           loading="lazy"
         />
       ) : (

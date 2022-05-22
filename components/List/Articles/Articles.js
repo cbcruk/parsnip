@@ -42,7 +42,7 @@ function Articles() {
                     <a>
                       <div
                         className={clsx(
-                          'flex h-[80px] bg-stone-800/90 rounded-2xl mt-4 overflow-hidden',
+                          'flex h-[80px] bg-stone-800/90 rounded-lg mt-4 overflow-hidden',
                           {
                             'opacity-50': data.status === 'closed',
                           }
