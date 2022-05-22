@@ -3,9 +3,10 @@ import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { atomWithToggle } from '../../../../../atoms/utils'
-import { IconLocationMarker } from '../../../../Icons'
+import { IconCategory } from '../../../../Icons'
 import Modal from '../../../../Modal'
 import Categories from '../../Categories'
+import Chip from '../shared/Chip'
 
 export const modalAtom = atomWithToggle(false)
 
@@ -25,14 +26,10 @@ function SelectCategory() {
 
   return (
     <>
-      <button
-        suppressHydrationWarning
-        className="inline-flex items-center gap-1 h-10 p-2 bg-blue-100 rounded-md text-xs text-green-500 font-bold cursor-pointer"
-        onClick={() => handleModal(true)}
-      >
-        <IconLocationMarker />
+      <Chip onClick={() => handleModal(true)}>
+        <IconCategory width={16} height={16} className="mr-2" />
         {currentCategory?.name ?? '카테고리'}
-      </button>
+      </Chip>
 
       <Modal isOpen={isOpen} onRequestClose={() => handleModal(false)}>
         <Categories />

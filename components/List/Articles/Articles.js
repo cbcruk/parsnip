@@ -6,24 +6,29 @@ import Price from '../shared/Price'
 import Photo from '../shared/Photo'
 import useArticles from './useArticles'
 import { getTimeFromNow } from '../../../utils'
+import SelectRegion from '../../Header/components/Select/Region'
+import SelectCategory from '../../Header/components/Select/Category'
+import Sticky from '../../Sticky'
 
 function Articles() {
   const { data, isValidating, size, setSize, mutate } = useArticles()
 
-  if (!data) {
-    return null
-  }
-
   return (
     <>
-      <Header
-        handleRefresh={async () => {
-          await setSize(1)
-          await mutate()
-          window.scroll(0, 0)
-        }}
-      />
-      {data.map((response, index) => {
+      <Sticky>
+        <Header
+          handleRefresh={async () => {
+            await setSize(1)
+            await mutate()
+            window.scroll(0, 0)
+          }}
+        />
+        <div className="flex items-center p-4 pt-0 gap-2">
+          <SelectRegion />
+          <SelectCategory />
+        </div>
+      </Sticky>
+      {data?.map((response, index) => {
         return (
           <div key={index} id={`articles-${index}`}>
             {response.articles.map((data) => {

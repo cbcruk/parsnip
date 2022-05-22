@@ -4,6 +4,7 @@ import { IconLocationMarker } from '../../../../Icons'
 import Modal from '../../../../Modal'
 import Form from '../../Form'
 import Result from '../../Result'
+import Chip from '../shared/Chip'
 import useRegion from './useRegion'
 
 function Select() {
@@ -12,14 +13,12 @@ function Select() {
 
   return (
     <>
-      <button
-        suppressHydrationWarning
-        className="inline-flex items-center gap-1 h-10 p-2 bg-blue-100 rounded-md text-xs text-green-500 font-bold cursor-pointer"
-        onClick={() => handleModal(true)}
-      >
-        {hasRegion && <IconLocationMarker />}
+      <Chip onClick={() => handleModal(true)}>
+        {hasRegion && (
+          <IconLocationMarker width={16} height={16} className="mr-2" />
+        )}
         {regionName}
-      </button>
+      </Chip>
 
       <Modal
         isOpen={!hasRegion || isOpen}

@@ -1,11 +1,11 @@
-function LocationMarker() {
+function LocationMarker(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-3 w-3"
-      fill="none"
       viewBox="0 0 24 24"
+      fill="none"
       stroke="currentColor"
+      {...props}
     >
       <path
         strokeLinecap="round"

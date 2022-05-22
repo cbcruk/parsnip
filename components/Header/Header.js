@@ -1,17 +1,14 @@
-import Refresh from '../Icons/Refresh'
-import SelectCategory from './components/Select/Category'
-import SelectRegion from './components/Select/Region'
+import { IconRefresh } from '../Icons'
 
 function Header({ handleRefresh }) {
   return (
-    <header className="sticky top-0 z-10 flex items-center justify-between p-4 bg-white shadow">
-      <div className="flex items-center gap-2">
-        <SelectRegion />
-        <SelectCategory />
+    <header className="flex items-center justify-between p-4">
+      <div className="flex gap-2 text-[22px] text-slate-800">당근마켓</div>
+      <div className="flex items-center">
+        <button className="p-2" onClick={handleRefresh}>
+          <IconRefresh className="w-[16px] h-[16px]" />
+        </button>
       </div>
-      <button className="p-2 ml-auto" onClick={handleRefresh}>
-        <Refresh className="w-4 h-4" />
-      </button>
     </header>
   )
 }
