@@ -2,21 +2,15 @@ import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import useSWR from 'swr'
 import { modalAtom } from '../Select/Category/Category'
 
-function Categories() {
+function Categories({ categories }) {
   const router = useRouter()
   const [, handleModal] = useAtom(modalAtom)
-  const { data } = useSWR('/api/categories')
-
-  if (!data) {
-    return null
-  }
 
   return (
     <div className="flex flex-wrap gap-2">
-      {data.map((category) => {
+      {categories.map((category) => {
         const isActive = parseInt(router.query.category, 10) === category.id
 
         return (
