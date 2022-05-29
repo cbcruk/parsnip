@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+message Session {
+  string id = 1;
+  uint64 expiredTime = 2;
+}
+
+message SearchFleaMarketRequest {
+  string query = 1;
+  int32 regionId = 2;
+  int32 pageSize = 3;
+  string pageToken = 4;
+  int32 sort = 5;
+  int32 regionRange = 6;
+  fixed64 priceGte = 8;
+  fixed64 priceLte = 9;
+  string lastAction = 11;
+  int32 freeShareEventEnabled = 14;
+  string queryFromV2 = 15;
+  string funnelFromV2 = 16;
+}
+
+message Request {
+  int32 name = 1;
+  string userAgent = 12;
+  string authToken = 13;
+  string queryId = 14;
+  Session session = 15;
+  SearchFleaMarketRequest searchFleaMarketRequest = 106;
+}
+
+message Image {
+  string id = 1;
+  string filepath = 2;
+  string type = 3;
+  string service = 4;
+  int32 width = 5;
+  int32 height = 6;
+  string url = 7;
+  string thumbnail = 8;
+  string medium = 9;
+  int32 oldImageId = 10;
+  string typename = 11;
+}
+
+message Timestamp {
+  int32 seconds = 1;
+  int32 nanos = 2;
+}
+
+message DoubleValue {
+  fixed64 value = 1;
+}
+
+message FleaMarketDoc {
+  int32 docId = 1;
+  string docToken = 2;
+  string docIdStr = 3;
+  int32 id = 10;
+  int32 userId = 11;
+  int32 regionId = 12;
+  string regionName = 13;
+  int32 categoryId = 14;
+  int32 firstImageId = 15;
+  int32 status = 16;
+  int32 visible = 17;
+  string publishRange = 18;
+  fixed64 score = 19;
+  DoubleValue price = 20;
+  string title = 21;
+  string content = 22;
+  int32 watchesCount = 23;
+  int32 chatRoomsCount = 24;
+  int32 republishCount = 25;
+  Timestamp publishedAt = 26;
+  Timestamp createdAt = 27;
+  int32 userChatRoomsCount = 28;
+  Image firstImage = 41;
+}
+
+message SearchFleaMarketResponse {
+  repeated FleaMarketDoc docsList = 1;
+  string nextPageToken = 2;
+  int32 isRecommendNotificationKeyword = 4;
+  string recommendTab = 5;
+}
+
+message Response {
+  string requestId = 11;
+  string queryId = 12;
+  Session session = 13;
+  SearchFleaMarketResponse searchFleaMarketResponse = 106;
+}
