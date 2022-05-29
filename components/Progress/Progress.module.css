@@ -1,0 +1,39 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  background-color: hsl(228 100% 90%);
+  opacity: 0;
+  transition: 0.3s all ease-out;
+}
+
+.wrapper:global(.is-loading) {
+  opacity: 1;
+}
+
+.bar {
+  position: absolute;
+  left: 0%;
+  width: 25%;
+  height: 100%;
+  background-color: hsl(228 100% 75%);
+  animation: loading 2s infinite ease-out;
+}
+
+@keyframes loading {
+  0% {
+    transform: translatex(-100%);
+  }
+
+  50% {
+    transform: translatex(100vw);
+  }
+
+  100% {
+    transform: translatex(-100%);
+  }
+}

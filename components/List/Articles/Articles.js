@@ -9,12 +9,14 @@ import { getTimeFromNow } from '../../../utils'
 import SelectRegion from '../../Header/components/Select/Region'
 import SelectCategory from '../../Header/components/Select/Category'
 import Sticky from '../../Sticky'
+import Progress from '../../Progress'
 
 function Articles() {
   const { data, isValidating, size, setSize, mutate } = useArticles()
 
   return (
     <>
+      <Progress isLoading={isValidating} />
       <Sticky>
         <Header
           handleRefresh={async () => {
