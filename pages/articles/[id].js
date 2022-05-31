@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Article from '../../components/Article/Article'
+import { TopAppBars } from '../../components/TopAppBars/TopAppBars'
 import { getArticle } from '../../lib/daangn'
 
 function ArticleId({ data }) {
@@ -39,6 +40,7 @@ function ArticleId({ data }) {
         />
       </Head>
 
+      <TopAppBars />
       <Article article={article} />
     </>
   )
