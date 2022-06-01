@@ -1,26 +1,17 @@
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
-import { useMemo, useContext } from 'react'
-import useSWRImmutable from 'swr/immutable'
+import { useMemo } from 'react'
 import { atomWithToggle } from '../../../../../atoms/utils'
 import { IconCategory } from '../../../../Icons'
 import Modal from '../../../../Modal'
-import { PropertiesContext } from '../../../../Provider'
 import Categories from '../../Categories'
 import Chip from '../shared/Chip'
+import data from './data.json'
 
 export const modalAtom = atomWithToggle(false)
 
-export function useApi() {
-  const { data } = useSWRImmutable('/api/categories', (url) =>
-    fetch(url).then((r) => r.json())
-  )
-
-  return data
-}
-
 function useCategory({ categoryId }) {
-  const categories = useContext(PropertiesContext)
+  const categories = data
   const currentCategory = useMemo(
     () =>
       categories
@@ -36,15 +27,11 @@ function useCategory({ categoryId }) {
 }
 
 function SelectCategory() {
-  const [isOpen, handleModal] = useAtom(modalAtom)
   const router = useRouter()
+  const [isOpen, handleModal] = useAtom(modalAtom)
   const { list, current } = useCategory({
     categoryId: parseInt(router.query.category, 10),
   })
-
-  if (!router.isReady) {
-    return null
-  }
 
   return (
     <>

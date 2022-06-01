@@ -10,6 +10,7 @@ import SelectRegion from '../../Header/components/Select/Region'
 import SelectCategory from '../../Header/components/Select/Category'
 import Sticky from '../../Sticky'
 import Progress from '../../Progress'
+import { RouterIsReady } from '../../RouterIsReady'
 
 function Articles() {
   const { data, isValidating, size, setSize, mutate } = useArticles()
@@ -28,7 +29,9 @@ function Articles() {
       </Sticky>
       <div className="sticky top-[64px] z-10 flex items-center gap-2 p-4 bg-stone-900/90 backdrop-blur-sm">
         <SelectRegion />
-        <SelectCategory />
+        <RouterIsReady>
+          <SelectCategory />
+        </RouterIsReady>
       </div>
       <div className="px-4">
         {data?.map((response, index) => {
@@ -104,7 +107,6 @@ function Articles() {
       </div>
       <div className="p-4">
         <button
-          suppressHydrationWarning
           disabled={isValidating}
           className="w-full h-9 p-1 rounded-full bg-indigo-500 text-indigo-200 text-sm font-bold"
           onClick={() => setSize(size + 1)}
