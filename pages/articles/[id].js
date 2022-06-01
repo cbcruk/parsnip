@@ -15,6 +15,26 @@ function ArticleId({ data }) {
       <Head>
         <title>다른마켓 - {article.title}</title>
         <meta name="description" content={article.content} />
+        <meta
+          property="og:url"
+          content={`https://parsnip-three.vercel.app/articles/${article.id}`}
+        />
+        <meta property="og:type" content="og:product" />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={article.content} />
+        <meta property="og:image" content={article.images[0]?.file} />
+        <meta property="product:plural_title" content={article.title} />
+        <meta property="product:price:amount" content={article.price} />
+        <meta property="product:price:currency" content="KRW" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="twitter:domain" content="parsnip-three.vercel.app" />
+        <meta
+          property="twitter:url"
+          content={`https://parsnip-three.vercel.app/articles/${article.id}`}
+        />
+        <meta name="twitter:title" content={article.title} />
+        <meta name="twitter:description" content={article.content} />
+        <meta name="twitter:image" content={article.images[0]?.file} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
