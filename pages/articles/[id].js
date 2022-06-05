@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Article from '../../components/Article/Article'
-import { TopAppBars } from '../../components/TopAppBars/TopAppBars'
+import { TopAppBars } from '../../components/TopAppBars'
 import { getArticle } from '../../lib/daangn'
 
 function ArticleId({ data }) {

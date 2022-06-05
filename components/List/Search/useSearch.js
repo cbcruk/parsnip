@@ -4,14 +4,13 @@ import useSWRInfinite from 'swr/infinite'
 import { currentAtom } from '../../../atoms/region'
 import { getUrlSearch } from '../../../utils'
 
-function useArticles() {
+export function useSearch() {
+  const router = useRouter()
   const [current] = useAtom(currentAtom)
   const regionId = current?.id
-  const router = useRouter()
-  const categoryId = router.query.category
   const urlSearch = getUrlSearch({
-    region_id: regionId,
-    category_id: categoryId,
+    regionId,
+    query: router.query.q,
   })
   const response = useSWRInfinite(
     (pageIndex, previousPageData) => {
@@ -19,16 +18,14 @@ function useArticles() {
 
       if (!regionId) return null
 
-      if (previousPageData && !previousPageData?.meta) return null
-
       if (pageIndex === 0) {
-        return ['/api/articles', urlSearch()]
+        return ['/api/search', urlSearch()]
       }
 
       return [
-        '/api/articles',
+        '/api/search',
         urlSearch({
-          max_published_at_f: previousPageData.meta.max_published_at_f,
+          pageToken: previousPageData.nextPageToken,
         }),
       ]
     },
@@ -40,5 +37,3 @@ function useArticles() {
 
   return response
 }
-
-export default useArticles

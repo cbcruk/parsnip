@@ -19,6 +19,7 @@ export function TopAppBars({ title }) {
               router.push('/')
             }
           }}
+          className="mr-4"
         >
           <IconArrowLeft />
         </button>

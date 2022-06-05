@@ -10,7 +10,7 @@ import SelectRegion from '../../Header/components/Select/Region'
 import SelectCategory from '../../Header/components/Select/Category'
 import Sticky from '../../Sticky'
 import Progress from '../../Progress'
-import { RouterIsReady } from '../../RouterIsReady'
+import { ClientOnly } from '../../ClientOnly'
 
 function Articles() {
   const { data, isValidating, size, setSize, mutate } = useArticles()
@@ -29,9 +29,7 @@ function Articles() {
       </Sticky>
       <div className="sticky top-[64px] z-10 flex items-center gap-2 p-4 bg-stone-900/90 backdrop-blur-sm">
         <SelectRegion />
-        <RouterIsReady>
-          <SelectCategory />
-        </RouterIsReady>
+        <SelectCategory />
       </div>
       <div className="px-4">
         {data?.map((response, index) => {
@@ -105,15 +103,17 @@ function Articles() {
           )
         })}
       </div>
-      <div className="p-4">
-        <button
-          disabled={isValidating}
-          className="w-full h-9 p-1 rounded-full bg-indigo-500 text-indigo-200 text-sm font-bold"
-          onClick={() => setSize(size + 1)}
-        >
-          {isValidating ? '로딩중...' : '더보기'}
-        </button>
-      </div>
+      <ClientOnly>
+        <div className="p-4">
+          <button
+            disabled={isValidating}
+            className="w-full h-9 p-1 rounded-full bg-indigo-500 text-indigo-200 text-sm font-bold"
+            onClick={() => setSize(size + 1)}
+          >
+            {isValidating ? '로딩중...' : '더보기'}
+          </button>
+        </div>
+      </ClientOnly>
     </>
   )
 }

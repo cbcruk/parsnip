@@ -49,3 +49,19 @@ export function getQueryString(query) {
 
   return params.toString()
 }
+
+export function getUrlSearch(nextParams) {
+  return (params) => {
+    const searchParams = new URLSearchParams()
+    const extendedParams = {
+      ...nextParams,
+      ...params,
+    }
+
+    Object.entries(extendedParams).forEach(([key, value]) => {
+      searchParams.append(key, value)
+    })
+
+    return searchParams.toString()
+  }
+}

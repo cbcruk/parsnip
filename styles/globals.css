@@ -28,3 +28,10 @@ input::placeholder,
 textarea::placeholder {
   @apply text-stone-400;
 }
+
+.line-clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

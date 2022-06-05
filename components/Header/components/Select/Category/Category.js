@@ -1,24 +1,15 @@
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
-import { atomWithToggle } from '../../../../../atoms/utils'
+import { modalAtom, ModalName } from '../../../../../atoms/modal'
+import { CATEGORIES } from '../../../../../constants'
 import { IconCategory } from '../../../../Icons'
 import Modal from '../../../../Modal'
 import Categories from '../../Categories'
 import Chip from '../shared/Chip'
-import data from './data.json'
-
-export const modalAtom = atomWithToggle(false)
 
 function useCategory({ categoryId }) {
-  const categories = data
-  const currentCategory = useMemo(
-    () =>
-      categories
-        ? categories.find((category) => category.id === categoryId)
-        : '',
-    [categories, categoryId]
-  )
+  const categories = CATEGORIES
+  const currentCategory = categories[categoryId]
 
   return {
     list: categories,
@@ -28,19 +19,22 @@ function useCategory({ categoryId }) {
 
 function SelectCategory() {
   const router = useRouter()
-  const [isOpen, handleModal] = useAtom(modalAtom)
+  const [modal, handleModal] = useAtom(modalAtom)
   const { list, current } = useCategory({
     categoryId: parseInt(router.query.category, 10),
   })
 
   return (
     <>
-      <Chip onClick={() => handleModal(true)}>
+      <Chip onClick={() => handleModal(ModalName.Category)}>
         <IconCategory width={16} height={16} className="mr-2" />
         {current}
       </Chip>
 
-      <Modal isOpen={isOpen} onRequestClose={() => handleModal(false)}>
+      <Modal
+        isOpen={modal === ModalName.Category}
+        onRequestClose={() => handleModal(null)}
+      >
         <Categories categories={list} />
       </Modal>
     </>

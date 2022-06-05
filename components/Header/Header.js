@@ -1,4 +1,5 @@
 import { IconRefresh } from '../Icons'
+import { Search } from '../Search'
 
 function Header({ handleRefresh }) {
   return (
@@ -10,6 +11,7 @@ function Header({ handleRefresh }) {
         <button className="p-2" onClick={handleRefresh}>
           <IconRefresh className="w-[16px] h-[16px]" />
         </button>
+        <Search />
       </div>
     </header>
   )

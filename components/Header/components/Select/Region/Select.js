@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { modalAtom } from '../../../../../atoms/modal'
+import { modalAtom, ModalName } from '../../../../../atoms/modal'
 import { ClientOnly } from '../../../../ClientOnly'
 import { IconLocationMarker } from '../../../../Icons'
 import Modal from '../../../../Modal'
@@ -10,19 +10,19 @@ import useRegion from './useRegion'
 
 function Select() {
   const { hasRegion, regionName } = useRegion()
-  const [isOpen, handleModal] = useAtom(modalAtom)
+  const [modal, handleModal] = useAtom(modalAtom)
 
   return (
     <ClientOnly>
-      <Chip onClick={() => handleModal(true)}>
+      <Chip onClick={() => handleModal(ModalName.Region)}>
         {hasRegion && (
           <IconLocationMarker width={16} height={16} className="mr-2" />
         )}
         {regionName}
       </Chip>
       <Modal
-        isOpen={!hasRegion || isOpen}
-        onRequestClose={() => handleModal(false)}
+        isOpen={!hasRegion || modal === ModalName.Region}
+        onRequestClose={() => handleModal(null)}
       >
         <Form />
         <Result />
