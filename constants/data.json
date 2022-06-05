@@ -1,87 +1,87 @@
-[
-  {
+{
+  "1": {
     "id": 1,
     "name": "디지털기기",
     "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/503ff38d518bbf9ab4701fcf5cdd35739f6034ab8f1807f609aa82c909b6ae2e.png"
   },
-  {
-    "id": 172,
-    "name": "생활가전",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/1338ed3f7846e23f03c6238f03836ddeb058841e022d18276230c56b6263861d.png"
-  },
-  {
-    "id": 8,
-    "name": "가구/인테리어",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/aa55f1eee88c3851517a7ed7426ba4d2d5bae899334b37212fe9c9477995f355.png"
-  },
-  {
-    "id": 4,
-    "name": "유아동",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/391d2d94ac4533b29794323fb2c0e56e7e54da532eb2c1a5466a96f26a1977f3.png"
-  },
-  {
-    "id": 173,
-    "name": "유아도서",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/18cb74a1b2685fe51744e50c3a306cc1a5e3b60c914c088cdfdbdbb658d51faa.png"
-  },
-  {
-    "id": 7,
-    "name": "생활/가공식품",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/f47423409f9deb2026bc8e598ddc7d2f799954bc3dd6dcf4e83111e67842f192.png"
-  },
-  {
-    "id": 3,
-    "name": "스포츠/레저",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/a283c3d099bd54ea5f57af0f2401dd243e414aadcdd79a7ad9442b82a6a79015.png"
-  },
-  {
-    "id": 31,
-    "name": "여성잡화",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/36caf2465b9708fe00396baf477e4313eae8d10695bc03f321147a5c5c63fad8.png"
-  },
-  {
-    "id": 5,
-    "name": "여성의류",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/dacb94848baf32e31f5d8bc038ad720d3a75fa701ebcb1766ccc1828c195a64e.png"
-  },
-  {
-    "id": 14,
-    "name": "남성패션/잡화",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/27ec31cd44f1d2e49e673ca5659339ac167aadc0f87b94beb08fbc22a2ece04e.png"
-  },
-  {
+  "2": {
     "id": 2,
     "name": "게임/취미",
     "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/75825b866ed0358a1980ed2b9a598f299931ad107eaf2de6035caf7ab5cd7544.png"
   },
-  {
+  "3": {
+    "id": 3,
+    "name": "스포츠/레저",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/a283c3d099bd54ea5f57af0f2401dd243e414aadcdd79a7ad9442b82a6a79015.png"
+  },
+  "4": {
+    "id": 4,
+    "name": "유아동",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/391d2d94ac4533b29794323fb2c0e56e7e54da532eb2c1a5466a96f26a1977f3.png"
+  },
+  "5": {
+    "id": 5,
+    "name": "여성의류",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/dacb94848baf32e31f5d8bc038ad720d3a75fa701ebcb1766ccc1828c195a64e.png"
+  },
+  "6": {
     "id": 6,
     "name": "뷰티/미용",
     "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/035bdf540ae200e38c5feb4e4e9a4952e4646552087d9ea39bafa5da607922a9.png"
   },
-  {
-    "id": 16,
-    "name": "반려동물용품",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/c30e996295456666627f7dd589c5e7011628335f302d49fafdbf1324fb699748.png"
+  "7": {
+    "id": 7,
+    "name": "생활/가공식품",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/f47423409f9deb2026bc8e598ddc7d2f799954bc3dd6dcf4e83111e67842f192.png"
   },
-  {
+  "8": {
+    "id": 8,
+    "name": "가구/인테리어",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/aa55f1eee88c3851517a7ed7426ba4d2d5bae899334b37212fe9c9477995f355.png"
+  },
+  "9": {
     "id": 9,
     "name": "도서/티켓/음반",
     "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/fb1130f17464d2417992df8bc378688625f95a1fee3d741a02c1064558c30fa6.png"
   },
-  {
-    "id": 139,
-    "name": "식물",
-    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/26c75f751a3391ef300d12d4e342f8835abad50b26a1fca4803f8097dc8668fa.png"
-  },
-  {
+  "13": {
     "id": 13,
     "name": "기타 중고물품",
     "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/f2686bcc3f37ab31939613e336a1a9b30dceb1607a234889627dfeba86f3dfb1.png"
   },
-  {
+  "14": {
+    "id": 14,
+    "name": "남성패션/잡화",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/27ec31cd44f1d2e49e673ca5659339ac167aadc0f87b94beb08fbc22a2ece04e.png"
+  },
+  "16": {
+    "id": 16,
+    "name": "반려동물용품",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/c30e996295456666627f7dd589c5e7011628335f302d49fafdbf1324fb699748.png"
+  },
+  "31": {
+    "id": 31,
+    "name": "여성잡화",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/36caf2465b9708fe00396baf477e4313eae8d10695bc03f321147a5c5c63fad8.png"
+  },
+  "32": {
     "id": 32,
     "name": "삽니다",
     "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/2be1013680d031f5e5233634004953bd8ffd095be636edf34de6aa6a440a6731.png"
+  },
+  "139": {
+    "id": 139,
+    "name": "식물",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/26c75f751a3391ef300d12d4e342f8835abad50b26a1fca4803f8097dc8668fa.png"
+  },
+  "172": {
+    "id": 172,
+    "name": "생활가전",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/1338ed3f7846e23f03c6238f03836ddeb058841e022d18276230c56b6263861d.png"
+  },
+  "173": {
+    "id": 173,
+    "name": "유아도서",
+    "icon_image": "https://dnvefa72aowie.cloudfront.net/origin/category_icon_image_id/202105/18cb74a1b2685fe51744e50c3a306cc1a5e3b60c914c088cdfdbdbb658d51faa.png"
   }
-]
+}
