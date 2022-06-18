@@ -49,7 +49,9 @@ function Article({ article }) {
           {article.category_name} ∙ {getTimeFromNow(article.updated_at)}
         </div>
 
-        <p className="py-4 whitespace-pre-line">{article.content}</p>
+        <p className="py-4 whitespace-pre-line break-words">
+          {article.content}
+        </p>
 
         <div className="text-xs text-gray-500">
           <Count
