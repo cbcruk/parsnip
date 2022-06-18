@@ -10,6 +10,7 @@
   "dependencies": {
     "@cbcruk/next-utils": "^0.0.10",
     "@floating-ui/react-dom": "^0.7.1",
+    "anchorme": "^2.1.2",
     "autoprefixer": "^10.4.2",
     "clsx": "^1.1.1",
     "dayjs": "^1.11.1",

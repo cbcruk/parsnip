@@ -1,4 +1,4 @@
-import { getTimeFromNow } from '../../utils'
+import { getAnchormeString, getTimeFromNow } from '../../utils'
 import Count from '../List/shared/Count/Count'
 import Price from '../List/shared/Price'
 
@@ -49,9 +49,12 @@ function Article({ article }) {
           {article.category_name} ∙ {getTimeFromNow(article.updated_at)}
         </div>
 
-        <p className="py-4 whitespace-pre-line break-words">
-          {article.content}
-        </p>
+        <p
+          className="py-4 whitespace-pre-line break-words"
+          dangerouslySetInnerHTML={{
+            __html: getAnchormeString(article.content),
+          }}
+        />
 
         <div className="text-xs text-gray-500">
           <Count

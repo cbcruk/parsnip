@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import anchorme from 'anchorme'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
 
@@ -64,4 +65,16 @@ export function getUrlSearch(nextParams) {
 
     return searchParams.toString()
   }
+}
+
+export function getAnchormeString(input) {
+  return anchorme({
+    input,
+    options: {
+      attributes: {
+        target: '_blank',
+        rel: 'noreferrer noopener',
+      },
+    },
+  })
 }
