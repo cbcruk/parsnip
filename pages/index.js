@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import Articles from '../components/List/Articles'
+import useArticles from '../components/List/Articles/useArticles'
 
 function Home() {
+  const response = useArticles()
+
   return (
     <>
       <Head>
@@ -10,7 +13,7 @@ function Home() {
       </Head>
 
       <main>
-        <Articles />
+        <Articles {...response} />
       </main>
     </>
   )

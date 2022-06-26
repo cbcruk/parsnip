@@ -4,17 +4,14 @@ import Header from '../../Header'
 import Count from '../shared/Count'
 import Price from '../shared/Price'
 import Photo from '../shared/Photo'
-import useArticles from './useArticles'
 import { getTimeFromNow } from '../../../utils'
 import SelectRegion from '../../Header/components/Select/Region'
 import SelectCategory from '../../Header/components/Select/Category'
 import Sticky from '../../Sticky'
 import Progress from '../../Progress'
-import { ClientOnly } from '../../ClientOnly'
+import { LoadMore } from '../shared/LoadMore/LoadMore'
 
-function Articles() {
-  const { data, isValidating, size, setSize, mutate } = useArticles()
-
+function Articles({ data, isValidating, size, setSize, mutate }) {
   return (
     <>
       <Progress isLoading={isValidating} />
@@ -103,17 +100,10 @@ function Articles() {
           )
         })}
       </div>
-      <ClientOnly>
-        <div className="p-4">
-          <button
-            disabled={isValidating}
-            className="w-full h-9 p-1 rounded-full bg-indigo-500 text-indigo-200 text-sm font-bold"
-            onClick={() => setSize(size + 1)}
-          >
-            {isValidating ? '로딩중...' : '더보기'}
-          </button>
-        </div>
-      </ClientOnly>
+      <LoadMore
+        isValidating={isValidating}
+        handleSize={() => setSize(size + 1)}
+      />
     </>
   )
 }
