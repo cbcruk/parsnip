@@ -4,19 +4,25 @@ import Link from 'next/link'
 import { searchHistoryAtom } from '../../atoms/search'
 import { IconX } from '../Icons'
 
-export function SearchHistory() {
+function useSearchHistory() {
   const [list, handleSearchHistory] = useAtom(searchHistoryAtom)
+  const handleReset = () => handleSearchHistory(RESET)
+  const handleDelete = (item) =>
+    handleSearchHistory((prev) => prev.filter((prevItem) => prevItem !== item))
 
+  return {
+    list,
+    handleReset,
+    handleDelete,
+  }
+}
+
+export function SearchHistoryComponent({ list, handleReset, handleDelete }) {
   return (
     <div className="py-4">
       <div className="flex justify-between">
         <div className="font-bold">최근 검색어</div>
-        <button
-          className="text-stone-500 text-sm"
-          onClick={() => {
-            handleSearchHistory(RESET)
-          }}
-        >
+        <button className="text-stone-500 text-sm" onClick={handleReset}>
           모두 지우기
         </button>
       </div>
@@ -29,9 +35,7 @@ export function SearchHistory() {
                 className="relative z-10"
                 onClick={(e) => {
                   e.preventDefault()
-                  handleSearchHistory((prev) =>
-                    prev.filter((prevItem) => prevItem !== item)
-                  )
+                  handleDelete(item)
                 }}
               >
                 <IconX />
@@ -41,5 +45,17 @@ export function SearchHistory() {
         ))}
       </div>
     </div>
+  )
+}
+
+export function SearchHistory() {
+  const { list, handleReset, handleDelete } = useSearchHistory()
+
+  return (
+    <SearchHistoryComponent
+      list={list}
+      handleReset={handleReset}
+      handleDelete={handleDelete}
+    />
   )
 }

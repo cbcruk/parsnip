@@ -10,9 +10,7 @@ import { IconSearch } from '../Icons'
 import Modal from '../Modal'
 import { SearchHistory } from '../SearchHistory'
 
-export function Search() {
-  const router = useRouter()
-  const [modal, handleModal] = useAtom(modalAtom)
+function useHotkeyword() {
   const [region] = useAtom(currentAtom)
   const { data } = useSWRImmutable(
     [
@@ -31,40 +29,70 @@ export function Search() {
       return fetch(`${url}?${search}`).then((r) => r.json())
     }
   )
+  const hotkeywordList = data?.keyword
 
+  return { hotkeywordList }
+}
+
+function Form({ regionName, handleSubmit }) {
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+
+        const form = e.target
+        const value = form.q.value
+
+        handleSubmit(value)
+      }}
+    >
+      <label className="flex items-center h-10 px-2 rounded-md bg-stone-700">
+        <input
+          type="search"
+          name="q"
+          placeholder={`${regionName} 근처에서 검색`}
+          className="w-full p-2 bg-transparent text-sm text-stone-400"
+        />
+      </label>
+    </form>
+  )
+}
+
+export function SearchComponent({ isOpen, openModal, closeModal, children }) {
   return (
     <ClientOnly>
-      <button className="p-2" onClick={() => handleModal(ModalName.Search)}>
+      <button className="p-2" onClick={openModal}>
         <IconSearch />
       </button>
-      <Modal
-        isOpen={modal === ModalName.Search}
-        onRequestClose={() => handleModal(null)}
-      >
-        <form
-          onSubmit={(e) => {
-            e.preventDefault()
 
-            const form = e.target
-            const value = form.q.value
-
-            router.push(`/search?q=${value}`)
-          }}
-        >
-          <label className="flex items-center h-10 px-2 rounded-md bg-stone-700">
-            <input
-              type="search"
-              name="q"
-              placeholder={`${
-                region?.name4 || region?.name3 || ''
-              } 근처에서 검색`}
-              className="w-full p-2 bg-transparent text-sm text-stone-400"
-            />
-          </label>
-        </form>
-        <div className="mt-4">{data && <HotKeyword list={data.keyword} />}</div>
+      <Modal isOpen={isOpen} onRequestClose={closeModal}>
+        {children}
         <SearchHistory />
       </Modal>
     </ClientOnly>
+  )
+}
+
+export function Search() {
+  const router = useRouter()
+  const [modal, handleModal] = useAtom(modalAtom)
+  const [region] = useAtom(currentAtom)
+  const { hotkeywordList } = useHotkeyword()
+
+  return (
+    <SearchComponent
+      hotkeywordList={hotkeywordList}
+      isOpen={modal === ModalName.Search}
+      openModal={() => handleModal(ModalName.Search)}
+      closeModal={() => handleModal(null)}
+    >
+      <Form
+        regionName={region?.name4 || region?.name3 || ''}
+        handleSubmit={(value) => router.push(`/search?q=${value}`)}
+      />
+      <div className="mt-4">
+        {hotkeywordList && <HotKeyword list={hotkeywordList} />}
+      </div>
+    </SearchComponent>
   )
 }
