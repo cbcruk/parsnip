@@ -1,13 +1,14 @@
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import useSWRImmutable from 'swr/immutable'
-import { modalAtom, ModalName } from '../../atoms/modal'
+import { ModalName } from '../../atoms/modal'
 import { currentAtom } from '../../atoms/region'
 import { getQueryString } from '../../utils'
 import { ClientOnly } from '../ClientOnly'
 import { HotKeyword } from '../HotKeyword'
 import { IconSearch } from '../Icons'
 import Modal from '../Modal'
+import { useModal } from '../Modal/useModal'
 import { SearchHistory } from '../SearchHistory'
 
 function useHotkeyword() {
@@ -75,16 +76,16 @@ export function SearchComponent({ isOpen, openModal, closeModal, children }) {
 
 export function Search() {
   const router = useRouter()
-  const [modal, handleModal] = useAtom(modalAtom)
+  const { isOpen, openModal, closeModal } = useModal(ModalName.Search)
   const [region] = useAtom(currentAtom)
   const { hotkeywordList } = useHotkeyword()
 
   return (
     <SearchComponent
       hotkeywordList={hotkeywordList}
-      isOpen={modal === ModalName.Search}
-      openModal={() => handleModal(ModalName.Search)}
-      closeModal={() => handleModal(null)}
+      isOpen={isOpen}
+      openModal={openModal}
+      closeModal={closeModal}
     >
       <Form
         regionName={region?.name4 || region?.name3 || ''}
