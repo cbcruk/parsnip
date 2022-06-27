@@ -1,3 +1,3 @@
-import SelectRegion from './Select'
+import SelectRegion from './Region'
 
 export default SelectRegion
