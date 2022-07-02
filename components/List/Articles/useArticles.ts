@@ -12,7 +12,7 @@ function useArticles() {
   const categoryId = router.query?.category ?? ''
   const urlSearch = getUrlSearch({
     region_id: `${regionId}`,
-    category_id: `${categoryId}`,
+    category_id: `${categoryId || 1}`,
   })
   const response = useSWRInfinite<ArticlesResponse>(
     (pageIndex, previousPageData) => {
