@@ -7,10 +7,11 @@ test('Header', () => {
 
   render(<Header handleRefresh={handleRefresh} />)
 
-  const header = within(screen.getByTestId('Header'))
+  const header = screen.getByTestId('Header')
+  const headerWithIn = within(header)
   expect(header).toBeDefined()
 
-  const button = screen.getByTestId('Header-refresh-button')
+  const button = headerWithIn.getByTestId('Header-refresh-button')
   fireEvent.click(button)
   expect(handleRefresh).toBeCalled()
 })
