@@ -3,10 +3,10 @@ import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { modalAtom } from '../../../../atoms/modal'
-import { Categories } from '../../../../constants'
+import { CategorieType } from '../../../../constants'
 
 type Props = {
-  categories: Categories
+  categories: CategorieType
 }
 
 function Categories({ categories }: Props) {
