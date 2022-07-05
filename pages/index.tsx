@@ -10,7 +10,7 @@ const Home: NextPage = () => {
         <meta name="description" content="당근과는 다르다! 당근과는!" />
       </Head>
 
-      <main>
+      <main data-testid="main">
         <Articles />
       </main>
     </>
