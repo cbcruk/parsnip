@@ -6,5 +6,9 @@ dayjs.locale('ko')
 dayjs.extend(relativeTime)
 
 export function getTimeFromNow(time: string | number) {
+  if (time === '') {
+    return ''
+  }
+
   return dayjs(time).fromNow()
 }
