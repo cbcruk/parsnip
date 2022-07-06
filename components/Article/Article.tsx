@@ -1,17 +1,17 @@
-import { Article, ArticleResponse } from '../../types/article'
+import { ArticleResponse } from '../../types/article'
 import { getAnchormeString, getTimeFromNow } from '../../utils'
 import Count from '../List/shared/Count/Count'
 import Price from '../List/shared/Price'
 
 type Props = {
-  article: Article
+  article: ArticleResponse['article']
 }
 
 function Article({ article }: Props) {
   const { user } = article
 
   return (
-    <main className="p-4">
+    <main className="p-4" data-testid="Article">
       <div className="flex gap-4 overflow-x-auto">
         {article.images.map((image) => (
           <img
