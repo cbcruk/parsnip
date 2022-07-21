@@ -1,11 +1,9 @@
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
-import useSWRImmutable from 'swr/immutable'
 import { ModalName } from '../../atoms/modal'
 import { currentAtom } from '../../atoms/region'
-import { HotKeywordResponse } from '../../types/hotKeyword'
-import { getQueryString } from '../../utils'
+import { trpc } from '../../utils/trpc'
 import { ClientOnly } from '../ClientOnly'
 import { HotKeyword } from '../HotKeyword'
 import { IconSearch } from '../Icons'
@@ -15,24 +13,18 @@ import { SearchHistory } from '../SearchHistory'
 
 function useHotkeyword() {
   const [region] = useAtom(currentAtom)
-  const { data } = useSWRImmutable<HotKeywordResponse>(
+  const hotKeywordQuery = trpc.useQuery(
     [
-      '/api/hotkeyword',
+      'hotkeyword.all',
       {
-        region_id: region?.id,
+        region_id: `${region?.id}`,
       },
     ],
-    async (url, query) => {
-      if (!query.region_id) {
-        return null
-      }
-
-      const search = getQueryString({ ...query })
-
-      return fetch(`${url}?${search}`).then((r) => r.json())
+    {
+      enabled: Boolean(region?.id),
     }
   )
-  const hotkeywordList = data?.keyword
+  const hotkeywordList = hotKeywordQuery.data?.keyword
 
   return { hotkeywordList }
 }
