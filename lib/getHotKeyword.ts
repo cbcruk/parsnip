@@ -1,3 +1,4 @@
+import { HEADERS } from '../constants'
 import { getQueryString } from '../utils'
 
 export type Query = { region_id: string }
@@ -25,10 +26,16 @@ export interface Keyword {
 export async function getHotKeyword(query: Query) {
   const qs = getQueryString({
     ...query,
+    user_id: process.env.USER_ID,
     size: 30,
   })
   const response = await fetch(
-    `${process.env.SEARCH_API_V2_URL}/hotkeyword?${qs}`
+    `${process.env.SEARCH_API_V2_URL}/hotkeyword?${qs}`,
+    {
+      headers: {
+        'x-search-auth-token': HEADERS['x-auth-token'],
+      },
+    }
   )
   const data: Response = await response.json()
 
